@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NECObot", "NECObot\NECObot.csproj", "{BDDBB3CF-ADAB-4535-BB8F-E314B32422D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{7EB154E6-60F7-45C9-A99A-F920B5C228FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDDBB3CF-ADAB-4535-BB8F-E314B32422D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDDBB3CF-ADAB-4535-BB8F-E314B32422D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDDBB3CF-ADAB-4535-BB8F-E314B32422D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDDBB3CF-ADAB-4535-BB8F-E314B32422D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EB154E6-60F7-45C9-A99A-F920B5C228FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EB154E6-60F7-45C9-A99A-F920B5C228FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EB154E6-60F7-45C9-A99A-F920B5C228FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EB154E6-60F7-45C9-A99A-F920B5C228FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
