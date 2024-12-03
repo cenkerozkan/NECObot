@@ -20,6 +20,11 @@ namespace NECObot.Controllers
         {
             return View();
         }
+        
+        public IActionResult AboutNeco()
+        {
+            return View();
+        }
 
     }
 }
