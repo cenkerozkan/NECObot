@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NECObot")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef808aa71eb4fe477293dd13f615d9ab7eed5b30")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+787feb1a11ba42c871ae561dd5687c91fa5a94de")]
 [assembly: System.Reflection.AssemblyProductAttribute("NECObot")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NECObot")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
