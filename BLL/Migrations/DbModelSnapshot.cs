@@ -65,7 +65,7 @@ namespace BLL.Migrations
 
                     b.HasIndex("ChatThreadId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("messages");
                 });
 
             modelBuilder.Entity("BLL.DAL.Message", b =>

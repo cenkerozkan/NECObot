@@ -1,6 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using BLL.DAL;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
