@@ -14,3 +14,19 @@ NECOBot is a Discord bot that is designed to help users with their daily tasks. 
     - [] Sort them with role and timestamp
   - [] Updating chat names
 - [] Create a service to interact with the python backend
+
+
+## Migrations:
+- Here is what you should do if you want to apply a migration:
+  - Open the terminal
+  - Navigate to the project directory
+  - Run the following command:
+    ```bash
+    dotnet ef database update
+    ```
+  - If you want to create a new migration, run the following command:
+    ```bash
+    dotnet ef migrations add <MigrationName>
+    ```
+    - Replace `<MigrationName>` with the name of the migration you want to create.
+    - After creating the migration, you can apply it by running the `dotnet ef database update` command.
