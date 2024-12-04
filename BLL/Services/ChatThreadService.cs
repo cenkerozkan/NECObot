@@ -1,6 +1,12 @@
-namespace BLL.Services;
+using BLL.DAL;
+using BLL.Models;
+using BLL.Services.Bases;
+using Microsoft.EntityFrameworkCore;
 
-public class ChatThreadService
+namespace BLL.Services
 {
-    
+    public class ChatThreadService
+    {
+        
+    }
 }
