@@ -71,17 +71,12 @@ namespace BLL.Migrations
             modelBuilder.Entity("BLL.DAL.Message", b =>
                 {
                     b.HasOne("BLL.DAL.ChatThread", "ChatThread")
-                        .WithMany("Messages")
+                        .WithMany()
                         .HasForeignKey("ChatThreadId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ChatThread");
-                });
-
-            modelBuilder.Entity("BLL.DAL.ChatThread", b =>
-                {
-                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,10 +20,11 @@ namespace BLL.DAL
     }
     public class Db : DbContext
     {
-        // This is for corresponding the model with the table in the database.
+        // These are the corresponding tables in the database.
         public DbSet<ChatThread> ChatThreads { get; set; }
         public DbSet<Message> Messages { get; set; }
-
+        
+        // This is the constructor that will be called when the application is run.
         public Db(DbContextOptions<Db> options) : base(options) { }
     }
 }
