@@ -8,8 +8,8 @@ NECOBot is a chat application that allows users to create chat threads, and retr
 - [x] Create a symbolic chat page
 - [x] Create BLL Project with DAL directory for data access.
 - [] Create services for:
-  - [] Deleting chats
-  - [] Getting chats
+  - [x] Deleting chats
+  - [x] Getting chats
   - [] Getting message histories
     - [] Sort them with role and timestamp
   - [] Updating chat names
