@@ -9,12 +9,11 @@ namespace BLL.Services.Bases
         public Service Create(TEntity record);
         public Service Update(TEntity record);
 
-        public Service Delete(TEntity record);
+        public Service Delete(Guid id);
         
         // I took this class from EZShop file but in my case,
         // my primary keys are Guids instead of integers because
         // I find it more convenient to use Guids as primary keys.
-        public Service Delete(Guid id);
         
     }
 }

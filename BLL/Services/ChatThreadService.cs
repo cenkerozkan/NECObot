@@ -48,9 +48,11 @@ namespace BLL.Services
         
         
         // DELETE METHOD
-        public Service Delete(ChatThread record)
+        public Service Delete(Guid id)
         {
-            if (_db.ChatThreads.Any(x => x.Id == record.Id))
+            // I find this way more convenient to find the record.
+            var record = _db.ChatThreads.Find(id);
+            if (record == null)
                 return Error("Chat thread not found.");
             
             _db.ChatThreads.Remove(record);
@@ -61,11 +63,9 @@ namespace BLL.Services
         
         public IQueryable<ChatThreadModel> Query()
         {
-            return _db.ChatThreads.Select(x => new ChatThreadModel
+            return _db.ChatThreads.Select(x => new ChatThreadModel()
             {
-                Id = x.Id,
-                Title = x.Title,
-                CreatedAt = x.CreatedAt
+                record = x
             });
         }
     }
