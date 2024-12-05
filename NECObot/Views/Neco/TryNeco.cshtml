@@ -63,7 +63,8 @@ ViewData["Title"] = "NECO";
                         <!-- Messages will be loaded here via AJAX -->
                     </div>
                     <div class="input-group chat-input">
-                        <input type="text" id="messageInput" class="form-control" placeholder="Type a message..." />
+                        <!-- Initial Message Input Part when the page loaded first. -->
+                        <input type="text" id="messageInput" class="form-control" placeholder="Type a message..."/>
                         <div class="input-group-append">
                             <button class="btn btn-primary" onclick="sendMessage()">Send</button>
                         </div>
@@ -79,6 +80,9 @@ ViewData["Title"] = "NECO";
     let selectedChatId = null;
 
     $(document).ready(function() {
+        // This is the initial loader. 
+        // It calls these two functions when the
+        // HTML document is ready.
         loadChatThreads();
         bindChatEvents();
     });
