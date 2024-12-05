@@ -14,7 +14,7 @@ namespace BLL.Services
         }
         
         // CREATE METHOD.
-        // Create new record method.
+        // Create new Record method.
         public Service Create(ChatThread record)
         {
             if (_db.ChatThreads.Any(x => x.Title == record.Title))
@@ -50,7 +50,7 @@ namespace BLL.Services
         // DELETE METHOD
         public Service Delete(Guid id)
         {
-            // I find this way more convenient to find the record.
+            // I find this way more convenient to find the Record.
             var record = _db.ChatThreads.Find(id);
             if (record == null)
                 return Error("Chat thread not found.");
@@ -65,7 +65,7 @@ namespace BLL.Services
         {
             return _db.ChatThreads.Select(x => new ChatThreadModel()
             {
-                record = x
+                Record = x
             });
         }
     }
