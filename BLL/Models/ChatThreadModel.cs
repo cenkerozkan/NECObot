@@ -9,8 +9,8 @@ namespace BLL.Models
     public class ChatThreadModel
     {
         public ChatThread Record { get; set; }
-        public ChatThread Id { get; set; }          // Guid
-        public ChatThread Title { get; set; }       // String
-        public ChatThread CreatedAt { get; set; }   // DateTime
+        public Guid Id { get; set; }          // Guid
+        public string Title { get; set; }       // String
+        public DateTime CreatedAt { get; set; }   // DateTime
     }
 }

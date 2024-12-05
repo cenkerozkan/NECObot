@@ -1,13 +1,17 @@
 using Npgsql;
 using BLL.DAL;
 using BLL.Services;
-//using BLL.Services.Bases; (This is in comment line temporarily)
+using BLL.Services.Bases;
+using BLL.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Register the services
+builder.Services.AddScoped<IService<ChatThread, ChatThreadModel>, ChatThreadService>();
+builder.Services.AddScoped<IService<Message, MessageModel>, MessagesService>();
 
 // Add DbContext service with Npgsql
 builder.Services.AddDbContext<BLL.DAL.Db>(options =>

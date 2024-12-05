@@ -40,6 +40,12 @@ namespace BLL.Services
             return _db.Messages.Select(x => new MessageModel()
             {
                 Record = x,
+                Id = x.Id,
+                Timestamp = x.Timestamp,
+                Content = x.Content,
+                Role = x.Role,
+                ChatThreadId = x.ChatThreadId,
+                ChatThread = x.ChatThread
             });
         }
     }

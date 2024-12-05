@@ -65,7 +65,10 @@ namespace BLL.Services
         {
             return _db.ChatThreads.Select(x => new ChatThreadModel()
             {
-                Record = x
+                Record = x,
+                Id = x.Id,
+                Title = x.Title,
+                CreatedAt = x.CreatedAt
             });
         }
     }

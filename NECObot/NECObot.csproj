@@ -15,4 +15,8 @@
       <ProjectReference Include="..\BLL\BLL.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Views\Shared\_Partials\" />
+    </ItemGroup>
+
 </Project>

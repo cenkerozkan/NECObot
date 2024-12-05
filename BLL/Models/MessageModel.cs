@@ -9,11 +9,11 @@ namespace BLL.Models
     public class MessageModel
     {
         public Message Record { get; set; }
-        public Message Id { get; set; }             // Guid
-        public Message Timestamp { get; set; }      // DateTime
-        public Message Content { get; set; }        // String
-        public Message Role { get; set; }           // String
-        public Message ChatThreadId { get; set; }   // Guid
-        public Message ChatThread { get; set; }     // Navigation property
+        public Guid Id { get; set; }               
+        public DateTime Timestamp { get; set; }    
+        public string Content { get; set; }        
+        public string Role { get; set; }           
+        public Guid ChatThreadId { get; set; }     
+        public ChatThread ChatThread { get; set; } 
     }
 }
