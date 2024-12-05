@@ -12,7 +12,7 @@ namespace BLL.DAL
         {
             var optionsBuilder = new DbContextOptionsBuilder<Db>();
 
-            // Use Npgsql with the connection string from appsettings.json (replace with actual connection string if needed)
+            //(replace with actual connection string if needed)
             optionsBuilder.UseNpgsql("server=localhost;port=5432;database=postgres;uid=postgres;pwd=NECO_2024;");
 
             return new Db(optionsBuilder.Options);
