@@ -7,13 +7,17 @@ NECOBot is a chat application that allows users to create chat threads, and retr
 ## TODO
 - [x] Create a symbolic chat page
 - [x] Create BLL Project with DAL directory for data access.
-- [] Create services for:
+- [x] Create services for:
   - [x] Deleting chats
   - [x] Getting chats
-  - [] Getting message histories
-    - [] Sort them with role and timestamp
-  - [] Updating chat names
-- [] Create a service to interact with the python backend
+  - [x] Getting message histories
+    - [x] Sort them with role and timestamp
+  - [x] Updating chat names
+- [x] Create a service to interact with the python backend
+
+## Pre-requisites
+You need to install docker or postgresql in order to run this application
+successfully.
 
 ## Migrations
 ### Creating a Migration
