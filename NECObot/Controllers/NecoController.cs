@@ -18,6 +18,7 @@ namespace NECObot.Controllers
         private readonly ILogger<NecoController> _logger;
         private readonly IService<ChatThread, ChatThreadModel> _chatThreadService;
         private readonly IService<Message, MessageModel> _messageService;
+        private readonly GeminiService _geminiService; 
         
         
         // Constructor with injected services.
@@ -30,6 +31,7 @@ namespace NECObot.Controllers
             _logger = logger;
             _chatThreadService = chatThreadService;
             _messageService = messageService;
+            _geminiService = new GeminiService();
             
         }
         
@@ -118,6 +120,8 @@ namespace NECObot.Controllers
             // Create and save bot message
             // I need to bring gemini service result into
             // Content field of Message. Call Gemini service above this function
+            // To provide the context, I need to take last six messages of 
+            // the ongoing thread and send them to Gemini service.
             var botMessage = new Message 
             { 
                 Id = Guid.NewGuid(),
