@@ -99,6 +99,7 @@ namespace NECObot.Controllers
         [HttpPost]
         public IActionResult SendMessage(Guid threadId, string content)
         {
+            // USER PART.
             // Create and save user message
             var userMessage = new Message 
             { 
@@ -112,8 +113,11 @@ namespace NECObot.Controllers
             var userResult = _messageService.Create(userMessage);
             if (!userResult.IsSuccessful)
                 return BadRequest(userResult.Message);
-
+            
+            // BOT PART.
             // Create and save bot message
+            // I need to bring gemini service result into
+            // Content field of Message. Call Gemini service above this function
             var botMessage = new Message 
             { 
                 Id = Guid.NewGuid(),

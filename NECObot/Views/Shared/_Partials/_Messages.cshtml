@@ -1,17 +1,34 @@
 @model IEnumerable<BLL.Models.MessageModel>
-
-@if (!Model.Any())
-{
-    <div class="alert alert-info">
-        Seems like there is a deep silence in here :D
-    </div>
-}
-else
-{
-    @foreach (var message in Model)
+<div>
+    <style>
+        .chat-message {
+            padding: 10px;
+            border-radius: 0.25rem;
+            margin-bottom: 10px;
+        }
+        .chat-message.user {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+        .chat-message.bot {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
+    </style>
+    @if (!Model.Any())
     {
-        <div class="chat-message @(message.Role == "user" ? "user" : "bot")">
-            @message.Content
+        <div class="alert alert-info">
+            Seems like there is a deep silence in here :D
         </div>
-    } 
-}
+    }
+    else
+    {
+        @foreach (var message in Model)
+        {
+            <div class="chat-message @(message.Role == "user" ? "user" : "bot")">
+                @message.Content
+            </div>
+        }
+    }
+</div>
