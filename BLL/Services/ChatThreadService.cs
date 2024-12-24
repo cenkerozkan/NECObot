@@ -17,6 +17,8 @@ namespace BLL.Services
         // Create new Record method.
         public Service Create(ChatThread record)
         {
+            // Remove this condition, because uniqueness is 
+            // provided by new Guid everytime.
             if (_db.ChatThreads.Any(x => x.Title == record.Title))
                 return Error("Chat thread already exists.");
             
