@@ -18,6 +18,13 @@ NECOBot is a chat application that allows users to create chat threads, and retr
   - [] Create a login and register services
   - [] Create a service to reset password
   - [] Create a relation between users and chats
+  - [] Create Role named Admin who can select accepted messages
+  - [] Create a service for accepted messages
+- Bring Roles table
+  - [] Create a service to manage roles
+    - [] Admin
+      - [] Which is responsible for seeing all mesages and responses. 
+    - [] User
 
 ## Pre-requisites
 You need to install docker or postgresql in order to run this application
