@@ -1,11 +1,20 @@
-namespace BLL.Services;
+using System;
+using System.Runtime.InteropServices.JavaScript;
+using BLL.Services.Bases;
 
-public class GeminiService
+namespace BLL.Services
 {
-    // Constructor.
-    public GeminiService()
+    public class GeminiService : GeminiServiceBase, IGeminiService
     {
+        // Constructor.
+        public GeminiService()
+        {
+        }
         
+        public GeminiServiceBase SendGeminiRequest(string userMessage)
+        {
+            // This is a dummy implementation.
+            return Error("This is a dummy implementation.");
+        }
     }
-    
 }

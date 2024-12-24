@@ -12,7 +12,8 @@ builder.Services.AddControllersWithViews();
 // Register the services
 builder.Services.AddScoped<IService<ChatThread, ChatThreadModel>, ChatThreadService>();
 builder.Services.AddScoped<IService<Message, MessageModel>, MessagesService>();
-builder.Services.AddScoped<GeminiService>();
+builder.Services.AddScoped<IGeminiService, GeminiService>();
+
 // Add gemini service in here.
 
 // Add DbContext service with Npgsql

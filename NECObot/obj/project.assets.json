@@ -19,6 +19,19 @@
           "lib/netstandard1.3/DotNetEnv.dll": {}
         }
       },
+      "DotnetGeminiSDK/1.0.14": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.1/DotnetGeminiSDK.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/DotnetGeminiSDK.dll": {}
+        }
+      },
       "Humanizer/2.14.1": {
         "type": "package",
         "dependencies": {
@@ -3573,6 +3586,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "DotNetEnv": "3.1.1",
+          "DotnetGeminiSDK": "1.0.14",
           "Microsoft.EntityFrameworkCore": "9.0.0",
           "Npgsql": "9.0.1",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.1"
@@ -3602,6 +3616,19 @@
         "dotnetenv.3.1.1.nupkg.sha512",
         "dotnetenv.nuspec",
         "lib/netstandard1.3/DotNetEnv.dll"
+      ]
+    },
+    "DotnetGeminiSDK/1.0.14": {
+      "sha512": "JsIhj7WLhWUkhM6NmBKvYBNWnins6jPu7aO6/r02bov/C6DGIB7kBZOoNP+QV3OOWoGcYbaoh71W4IuSiNL0Nw==",
+      "type": "package",
+      "path": "dotnetgeminisdk/1.0.14",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dotnetgeminisdk.1.0.14.nupkg.sha512",
+        "dotnetgeminisdk.nuspec",
+        "lib/netstandard2.0/DotnetGeminiSDK.dll",
+        "lib/netstandard2.1/DotnetGeminiSDK.dll"
       ]
     },
     "Humanizer/2.14.1": {

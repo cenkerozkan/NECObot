@@ -19,6 +19,19 @@
           "lib/netstandard1.3/DotNetEnv.dll": {}
         }
       },
+      "DotnetGeminiSDK/1.0.14": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.1/DotnetGeminiSDK.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/DotnetGeminiSDK.dll": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -770,6 +783,19 @@
           "System.Threading.Timer": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XDocument": "4.3.0"
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Npgsql/9.0.1": {
@@ -2307,6 +2333,19 @@
         "lib/netstandard1.3/DotNetEnv.dll"
       ]
     },
+    "DotnetGeminiSDK/1.0.14": {
+      "sha512": "JsIhj7WLhWUkhM6NmBKvYBNWnins6jPu7aO6/r02bov/C6DGIB7kBZOoNP+QV3OOWoGcYbaoh71W4IuSiNL0Nw==",
+      "type": "package",
+      "path": "dotnetgeminisdk/1.0.14",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dotnetgeminisdk.1.0.14.nupkg.sha512",
+        "dotnetgeminisdk.nuspec",
+        "lib/netstandard2.0/DotnetGeminiSDK.dll",
+        "lib/netstandard2.1/DotnetGeminiSDK.dll"
+      ]
+    },
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -3838,6 +3877,36 @@
         "dotnet_library_license.txt",
         "netstandard.library.1.6.1.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "Npgsql/9.0.1": {
@@ -7495,6 +7564,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "DotNetEnv >= 3.1.1",
+      "DotnetGeminiSDK >= 1.0.14",
       "Microsoft.EntityFrameWorkCore.Design >= 9.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.0",
       "Npgsql >= 9.0.1",
@@ -7546,6 +7616,10 @@
           "DotNetEnv": {
             "target": "Package",
             "version": "[3.1.1, )"
+          },
+          "DotnetGeminiSDK": {
+            "target": "Package",
+            "version": "[1.0.14, )"
           },
           "Microsoft.EntityFrameWorkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

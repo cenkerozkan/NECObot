@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "dokfuFbV2pA=",
+  "dgSpecHash": "EEY4KZmVKP0=",
   "success": true,
   "projectFilePath": "/Users/issola/RiderProjects/NECObot/BLL/BLL.csproj",
   "expectedPackageFiles": [
     "/Users/issola/.nuget/packages/dotnetenv/3.1.1/dotnetenv.3.1.1.nupkg.sha512",
+    "/Users/issola/.nuget/packages/dotnetgeminisdk/1.0.14/dotnetgeminisdk.1.0.14.nupkg.sha512",
     "/Users/issola/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/issola/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "/Users/issola/.nuget/packages/microsoft.build.framework/17.8.3/microsoft.build.framework.17.8.3.nupkg.sha512",
@@ -36,6 +37,7 @@
     "/Users/issola/.nuget/packages/microsoft.win32.primitives/4.3.0/microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "/Users/issola/.nuget/packages/mono.texttemplating/3.0.0/mono.texttemplating.3.0.0.nupkg.sha512",
     "/Users/issola/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
+    "/Users/issola/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/issola/.nuget/packages/npgsql/9.0.1/npgsql.9.0.1.nupkg.sha512",
     "/Users/issola/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.1/npgsql.entityframeworkcore.postgresql.9.0.1.nupkg.sha512",
     "/Users/issola/.nuget/packages/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
