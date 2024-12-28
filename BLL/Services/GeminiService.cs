@@ -13,8 +13,9 @@ namespace BLL.Services
         
         public GeminiServiceBase SendGeminiRequest(string userMessage)
         {
-            // This is a dummy implementation.
-            return Error("This is a dummy implementation.");
+            var response =  geminiClient.TextPrompt(userMessage);
+            Console.WriteLine(response);
+            return this;
         }
     }
 }

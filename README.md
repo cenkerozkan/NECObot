@@ -13,7 +13,9 @@ NECOBot is a chat application that allows users to create chat threads, and retr
   - [x] Getting message histories
     - [x] Sort them with role and timestamp
   - [x] Updating chat names
-- [x] Create a service to interact with the python backend
+- [] Create a service to interact with the python backend
+- [] Bring async support.
+- [] Bring temporary manual context handler with message history.
 - [] Bring Users table
   - [] Create a login and register services
   - [] Create a service to reset password

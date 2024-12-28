@@ -3,9 +3,12 @@ using BLL.DAL;
 using BLL.Services;
 using BLL.Services.Bases;
 using BLL.Models;
+using DotnetGeminiSDK;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+//builder.Configuration
+    //.AddEnvironmentVariables();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
