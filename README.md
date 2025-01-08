@@ -15,8 +15,9 @@ NECOBot is a chat application that allows users to create chat threads, and retr
   - [x] Updating chat names
 - [] Make message box weight little bit shorter.
 - [] Create a service to interact with the python backend
-- [] Bring async support.
+- [x] Bring async support.
 - [] Bring temporary manual context handler with message history.
+- [x] Implement Gemini Service for Actual AI Responses
 - [] Bring Users table
   - [] Create a login and register services
   - [] Create a service to reset password
