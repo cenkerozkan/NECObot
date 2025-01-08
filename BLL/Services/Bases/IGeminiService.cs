@@ -8,6 +8,9 @@ namespace BLL.Services.Bases
     // a class inherits from this interface and its base abstract class.
     public interface IGeminiService
     {
-        public GeminiServiceBase SendGeminiRequest(string userMessage);
+        public interface IGeminiService
+        {
+            Task<GeminiServiceBase> SendGeminiRequest(string userMessage);
+        }
     }
 }

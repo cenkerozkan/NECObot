@@ -2,6 +2,8 @@
 using DotnetGeminiSDK;
 using DotnetGeminiSDK.Client;
 using DotnetGeminiSDK.Config;
+using DotnetGeminiSDK.Model.Response;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BLL.Services.Bases
 {

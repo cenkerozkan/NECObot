@@ -48,6 +48,7 @@ namespace NECObot.Controllers
         
         public IActionResult AboutNeco()
         {
+            // Returns the main view of NECO bot.
             return View();
         }
 
@@ -55,6 +56,7 @@ namespace NECObot.Controllers
         [HttpGet]
         public IActionResult GetAllChats()
         {
+            // Returns the partial view of all chat threads.
             var chatThreads = _chatThreadService.Query()
                 .Select(x => new ChatThreadModel
                 {
@@ -71,6 +73,7 @@ namespace NECObot.Controllers
         [HttpGet]
         public IActionResult GetMessages(Guid threadId)
         {
+            // Returns the partial view of messages in a chat thread.
             var messages = _messageService.Query().Where(x => x.ChatThreadId == threadId).ToList();
             return PartialView("_Partials/_Messages", messages);
         }
@@ -99,7 +102,7 @@ namespace NECObot.Controllers
         }
 
         [HttpPost]
-        public IActionResult SendMessage(Guid threadId, string content)
+        public async Task<IActionResult> SendMessage(Guid threadId, string content)
         {
             // USER PART.
             // Create and save user message
@@ -112,6 +115,7 @@ namespace NECObot.Controllers
                 Timestamp = DateTime.UtcNow
             };
             
+            // First I'm saving the user message into the database.
             var userResult = _messageService.Create(userMessage);
             if (!userResult.IsSuccessful)
                 return BadRequest(userResult.Message);
@@ -122,14 +126,21 @@ namespace NECObot.Controllers
             // Content field of Message. Call Gemini service above this function
             // To provide the context, I need to take last six messages of 
             // the ongoing thread and send them to Gemini service.
-            var botMessage = new Message 
-            { 
+            
+            // NEW ADDITION:
+            // I'm now trying to send the message content which is
+            // Taken from new userMessage object to the Gemini service.
+            var geminiResult =  await _geminiService.SendGeminiRequest(userMessage.Content);
+            var botMessage = new Message
+            {
                 Id = Guid.NewGuid(),
                 ChatThreadId = threadId,
-                Content = "I am NECO, your symbolic assistant! 🤖",
+                Content = "",
                 Role = "bot",
                 Timestamp = DateTime.UtcNow
             };
+            botMessage.Content = geminiResult.IsSuccessful ? geminiResult.Message : "Something went wrong with the API.";
+
             
             var botResult = _messageService.Create(botMessage);
             if (!botResult.IsSuccessful)
