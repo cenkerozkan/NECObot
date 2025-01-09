@@ -6,12 +6,15 @@ using BLL.Services;
 using BLL.Models;
 using BLL.Services.Bases;
 using BLL.DAL;  
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace NECObot.Controllers
 {
     // I believe single controller would be enough for handling
     // a single chat page. So I am not going to create two different
     // controllers for ChatThread and Message.
+    [Authorize]
     public class NecoController : Controller
     {
         // Needed services.
@@ -40,9 +43,22 @@ namespace NECObot.Controllers
             return View();
         }
 
+        private Guid GetCurrentUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out Guid userId))
+            {
+                throw new UnauthorizedAccessException("User is not properly authenticated");
+            }
+            return userId;
+        }
+
         public IActionResult TryNeco()
         {
-            var chatThreads = _chatThreadService.Query().ToList();
+            var userId = GetCurrentUserId();
+            var chatThreads = _chatThreadService.Query()
+                .Where(x => x.Record.UserId == userId)
+                .ToList();
             return View(chatThreads);
         }
         
@@ -56,8 +72,9 @@ namespace NECObot.Controllers
         [HttpGet]
         public IActionResult GetAllChats()
         {
-            // Returns the partial view of all chat threads.
+            var userId = GetCurrentUserId();
             var chatThreads = _chatThreadService.Query()
+                .Where(x => x.Record.UserId == userId)
                 .Select(x => new ChatThreadModel
                 {
                     Id = x.Record.Id,
@@ -83,6 +100,13 @@ namespace NECObot.Controllers
         [HttpPost]
         public IActionResult DeleteChatThread(Guid id)
         {
+            var userId = GetCurrentUserId();
+            var chatThread = _chatThreadService.Query()
+                .FirstOrDefault(x => x.Record.Id == id && x.Record.UserId == userId);
+
+            if (chatThread == null)
+                return NotFound("Chat thread not found or you don't have permission to delete it");
+
             var result = _chatThreadService.Delete(id);
             if (!result.IsSuccessful)   
                 return BadRequest(result.Message);
@@ -92,7 +116,12 @@ namespace NECObot.Controllers
         [HttpPost]
         public IActionResult CreateChatThread(string title)
         {
-            var chatThread = new ChatThread { Title = title };
+            var userId = GetCurrentUserId();
+            var chatThread = new ChatThread 
+            { 
+                Title = title,
+                UserId = userId
+            };
             var result = _chatThreadService.Create(chatThread);
             
             if (!result.IsSuccessful)

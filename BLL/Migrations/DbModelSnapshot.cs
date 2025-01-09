@@ -89,10 +89,15 @@ namespace BLL.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("chat_threads");
                 });
@@ -209,10 +214,21 @@ namespace BLL.Migrations
                     b.Navigation("Message");
                 });
 
+            modelBuilder.Entity("BLL.DAL.ChatThread", b =>
+                {
+                    b.HasOne("BLL.DAL.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("BLL.DAL.Message", b =>
                 {
                     b.HasOne("BLL.DAL.ChatThread", "ChatThread")
-                        .WithMany()
+                        .WithMany("Messages")
                         .HasForeignKey("ChatThreadId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -261,6 +277,11 @@ namespace BLL.Migrations
             modelBuilder.Entity("BLL.DAL.Category", b =>
                 {
                     b.Navigation("MessageCategories");
+                });
+
+            modelBuilder.Entity("BLL.DAL.ChatThread", b =>
+                {
+                    b.Navigation("Messages");
                 });
 
             modelBuilder.Entity("BLL.DAL.Role", b =>

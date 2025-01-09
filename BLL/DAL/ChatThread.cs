@@ -9,13 +9,20 @@ namespace BLL.DAL
     public class ChatThread
     {
         [Key]
-        public Guid Id { get; set; } = Guid.NewGuid(); // Use UUID as primary key
+        public Guid Id { get; set; } = Guid.NewGuid();
         
         [Required]
-        [StringLength(50)]
-        public string Title { get; set; } = string.Empty; // Title of the chat thread
+        [StringLength(100)]
+        public string Title { get; set; } = string.Empty;
         
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow; // Timestamp for when the chat thread was created
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         
+        [Required]
+        public Guid UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+        
+        public ICollection<Message> Messages { get; set; }
     }
 }
