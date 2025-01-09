@@ -23,8 +23,33 @@ namespace BLL.DAL
         // These are the corresponding tables in the database.
         public DbSet<ChatThread> ChatThreads { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<AcceptedMessage> AcceptedMessages { get; set; }
+        public DbSet<MessageCategory> MessageCategories { get; set; }
         
         // This is the constructor that will be called when the application is run.
         public Db(DbContextOptions<Db> options) : base(options) { }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            
+            // Configure many-to-many relationship for UserRoles
+            modelBuilder.Entity<UserRole>()
+                .HasKey(ur => new { ur.UserId, ur.RoleId });
+            
+            // Configure many-to-many relationship for MessageCategories
+            modelBuilder.Entity<MessageCategory>()
+                .HasKey(mc => new { mc.CategoryId, mc.AcceptedMessageId });
+            
+            // Configure cascade delete behavior
+            modelBuilder.Entity<AcceptedMessage>()
+                .HasOne(am => am.Message)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

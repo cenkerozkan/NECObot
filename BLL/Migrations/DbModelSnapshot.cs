@@ -22,6 +22,62 @@ namespace BLL.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("BLL.DAL.AcceptedMessage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("AcceptedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("AcceptedTimestamp")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("MessageId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MessageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AcceptedMessages");
+                });
+
+            modelBuilder.Entity("BLL.DAL.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("categories");
+                });
+
             modelBuilder.Entity("BLL.DAL.ChatThread", b =>
                 {
                     b.Property<Guid>("Id")
@@ -68,6 +124,91 @@ namespace BLL.Migrations
                     b.ToTable("messages");
                 });
 
+            modelBuilder.Entity("BLL.DAL.MessageCategory", b =>
+                {
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AcceptedMessageId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("CategoryId", "AcceptedMessageId");
+
+                    b.HasIndex("AcceptedMessageId");
+
+                    b.ToTable("message_categories");
+                });
+
+            modelBuilder.Entity("BLL.DAL.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("roles");
+                });
+
+            modelBuilder.Entity("BLL.DAL.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("users");
+                });
+
+            modelBuilder.Entity("BLL.DAL.UserRole", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("user_roles");
+                });
+
+            modelBuilder.Entity("BLL.DAL.AcceptedMessage", b =>
+                {
+                    b.HasOne("BLL.DAL.Message", "Message")
+                        .WithMany()
+                        .HasForeignKey("MessageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BLL.DAL.User", null)
+                        .WithMany("AcceptedMessages")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Message");
+                });
+
             modelBuilder.Entity("BLL.DAL.Message", b =>
                 {
                     b.HasOne("BLL.DAL.ChatThread", "ChatThread")
@@ -77,6 +218,61 @@ namespace BLL.Migrations
                         .IsRequired();
 
                     b.Navigation("ChatThread");
+                });
+
+            modelBuilder.Entity("BLL.DAL.MessageCategory", b =>
+                {
+                    b.HasOne("BLL.DAL.AcceptedMessage", "AcceptedMessage")
+                        .WithMany()
+                        .HasForeignKey("AcceptedMessageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BLL.DAL.Category", "Category")
+                        .WithMany("MessageCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AcceptedMessage");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("BLL.DAL.UserRole", b =>
+                {
+                    b.HasOne("BLL.DAL.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BLL.DAL.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BLL.DAL.Category", b =>
+                {
+                    b.Navigation("MessageCategories");
+                });
+
+            modelBuilder.Entity("BLL.DAL.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("BLL.DAL.User", b =>
+                {
+                    b.Navigation("AcceptedMessages");
+
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }
