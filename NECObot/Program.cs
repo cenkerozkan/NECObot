@@ -63,7 +63,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     try
     {
-        await DatabaseSeeder.SeedRoles(services);
+        await DatabaseSeeder.SeedDatabase(services);
     }
     catch (Exception ex)
     {
