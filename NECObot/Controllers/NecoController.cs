@@ -37,7 +37,7 @@ namespace NECObot.Controllers
             _geminiService = new GeminiService();
             
         }
-        
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
@@ -70,9 +70,9 @@ namespace NECObot.Controllers
             return View(chatThreads);
         }
         
+        [AllowAnonymous]
         public IActionResult AboutNeco()
         {
-            // Returns the main view of NECO bot.
             return View();
         }
 
