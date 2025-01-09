@@ -56,9 +56,17 @@ namespace NECObot.Controllers
         public IActionResult TryNeco()
         {
             var userId = GetCurrentUserId();
-            var chatThreads = _chatThreadService.Query()
-                .Where(x => x.Record.UserId == userId)
-                .ToList();
+            var isAdmin = User.IsInRole("Admin");
+            
+            var query = _chatThreadService.Query();
+            
+            if (!isAdmin)
+            {
+                // Regular users can only see their own chats
+                query = query.Where(x => x.Record.UserId == userId);
+            }
+            
+            var chatThreads = query.ToList();
             return View(chatThreads);
         }
         
@@ -73,8 +81,16 @@ namespace NECObot.Controllers
         public IActionResult GetAllChats()
         {
             var userId = GetCurrentUserId();
-            var chatThreads = _chatThreadService.Query()
-                .Where(x => x.Record.UserId == userId)
+            var isAdmin = User.IsInRole("Admin");
+            
+            var query = _chatThreadService.Query();
+            
+            if (!isAdmin)
+            {
+                query = query.Where(x => x.Record.UserId == userId);
+            }
+
+            var chatThreads = query
                 .Select(x => new ChatThreadModel
                 {
                     Id = x.Record.Id,
@@ -83,6 +99,7 @@ namespace NECObot.Controllers
                     Record = x.Record
                 })
                 .ToList();
+
             return PartialView("_Partials/_ChatThreads", chatThreads);
         }
         
@@ -101,8 +118,10 @@ namespace NECObot.Controllers
         public IActionResult DeleteChatThread(Guid id)
         {
             var userId = GetCurrentUserId();
+            var isAdmin = User.IsInRole("Admin");
+            
             var chatThread = _chatThreadService.Query()
-                .FirstOrDefault(x => x.Record.Id == id && x.Record.UserId == userId);
+                .FirstOrDefault(x => x.Record.Id == id && (isAdmin || x.Record.UserId == userId));
 
             if (chatThread == null)
                 return NotFound("Chat thread not found or you don't have permission to delete it");

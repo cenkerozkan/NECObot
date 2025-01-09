@@ -43,6 +43,10 @@ namespace BLL.Services
             if (await _context.Users.AnyAsync(u => u.Username == username))
                 return (false, "Username already exists.");
 
+            var regularRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "RegularUser");
+            if (regularRole == null)
+                return (false, "Role configuration error.");
+
             var user = new User
             {
                 Username = username,
@@ -51,6 +55,15 @@ namespace BLL.Services
             };
 
             _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            var userRole = new UserRole
+            {
+                UserId = user.Id,
+                RoleId = regularRole.Id
+            };
+
+            _context.UserRoles.Add(userRole);
             await _context.SaveChangesAsync();
 
             return (true, "Registration successful");

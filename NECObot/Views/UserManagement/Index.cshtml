@@ -1,0 +1,48 @@
+@model IEnumerable<BLL.DAL.User>
+
+<div class="container mt-4">
+    <h2>User Management</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Created At</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Username</td>
+                    <td>@user.CreatedAt.ToString("g")</td>
+                    <td>
+                        @string.Join(", ", user.UserRoles.Select(ur => ur.Role.Name))
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            @if (user.Username != "admin")
+                            {
+                                <form asp-action="Delete" method="post" style="display: inline;">
+                                    <input type="hidden" name="id" value="@user.Id" />
+                                    <button type="submit" class="btn btn-danger btn-sm" 
+                                            onclick="return confirm('Are you sure you want to delete this user?')">
+                                        Delete
+                                    </button>
+                                </form>
+                                
+                                <form asp-action="ToggleAdminRole" method="post" style="display: inline;">
+                                    <input type="hidden" name="userId" value="@user.Id" />
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        @(user.UserRoles.Any(ur => ur.Role.Name == "Admin") ? "Remove Admin" : "Make Admin")
+                                    </button>
+                                </form>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> 

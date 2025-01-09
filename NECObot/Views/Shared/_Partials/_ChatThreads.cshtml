@@ -9,7 +9,13 @@
         @foreach (var chatThread in Model)
         {
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                <span class="chat-select" data-chat-id="@chatThread.Record.Id">@chatThread.Record.Title</span>
+                <div>
+                    <span class="chat-select" data-chat-id="@chatThread.Record.Id">@chatThread.Record.Title</span>
+                    @if (User.IsInRole("Admin") && chatThread.Record.User != null)
+                    {
+                        <small class="text-muted d-block">Created by: @chatThread.Record.User.Username</small>
+                    }
+                </div>
                 <button class="btn btn-sm btn-danger chat-delete" data-chat-id="@chatThread.Record.Id">X</button>
             </li>
         }
