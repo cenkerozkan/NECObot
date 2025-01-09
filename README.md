@@ -13,22 +13,22 @@ NECOBot is a chat application that allows users to create chat threads, and retr
   - [x] Getting message histories
     - [x] Sort them with role and timestamp
   - [x] Updating chat names
-- [] Make message box weight little bit shorter.
+- [x] Make message box weight little bit shorter.
 - [] Create a service to interact with the python backend
 - [x] Bring async support.
 - [] Bring temporary manual context handler with message history.
 - [x] Implement Gemini Service for Actual AI Responses
-- [] Bring Users table
-  - [] Create a login and register services
+- [x] Bring Users table
+  - [x] Create a login and register services
   - [] Create a service to reset password
-  - [] Create a relation between users and chats
-  - [] Create Role named Admin who can select accepted messages
-  - [] Create a service for accepted messages
+  - [x] Create a relation between users and chats
+  - [x] Create Role named Admin who can select accepted messages
+  - [x] Create a service for accepted messages
 - Bring Roles table
-  - [] Create a service to manage roles
-    - [] Admin
-      - [] Which is responsible for seeing all mesages and responses. 
-    - [] User
+  - [x] Create a service to manage roles
+    - [x] Admin
+      - [x] Which is responsible for seeing all mesages and responses. 
+    - [x] User
 
 ## Pre-requisites
 You need to install docker or postgresql in order to run this application
