@@ -6,6 +6,7 @@ using BLL.Models;
 using DotnetGeminiSDK;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Configuration
@@ -56,6 +57,20 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        await DatabaseSeeder.SeedRoles(services);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+    }
+}
 
 app.MapControllerRoute(
     name: "default",
