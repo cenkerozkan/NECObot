@@ -34,6 +34,20 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Neco" asp-action="AboutNeco">About NECO</a>
                     </li>
                 </ul>
+                <div class="navbar-nav ms-auto">
+                    @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <span class="nav-item nav-link">Welcome, @User.Identity.Name!</span>
+                        <form class="nav-item" asp-controller="Auth" asp-action="Logout" method="post">
+                            <button type="submit" class="btn btn-link nav-link">Logout</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a class="nav-link" asp-controller="Auth" asp-action="Login">Login</a>
+                        <a class="nav-link" asp-controller="Auth" asp-action="Register">Register</a>
+                    }
+                </div>
             </div>
         </div>
     </nav>

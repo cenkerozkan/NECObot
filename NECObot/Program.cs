@@ -5,6 +5,7 @@ using BLL.Services.Bases;
 using BLL.Models;
 using DotnetGeminiSDK;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Configuration
@@ -16,6 +17,18 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IService<ChatThread, ChatThreadModel>, ChatThreadService>();
 builder.Services.AddScoped<IService<Message, MessageModel>, MessagesService>();
 builder.Services.AddScoped<IGeminiService, GeminiService>();
+builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Auth/Login";
+        options.LogoutPath = "/Auth/Logout";
+        options.AccessDeniedPath = "/Auth/AccessDenied";
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.Strict;
+    });
 
 // Add gemini service in here.
 
@@ -39,6 +52,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
