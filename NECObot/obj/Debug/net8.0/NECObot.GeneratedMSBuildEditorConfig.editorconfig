@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/issola/RiderProjects/NECObot/NECObot
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/issola/RiderProjects/NECObot/NECObot/Views/AcceptedMessage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjZXB0ZWRNZXNzYWdlL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/issola/RiderProjects/NECObot/NECObot/Views/Auth/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXV0aC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

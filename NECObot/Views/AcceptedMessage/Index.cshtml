@@ -1,0 +1,28 @@
+@model IEnumerable<BLL.DAL.AcceptedMessage>
+
+<div class="container mt-4">
+    <h2>Accepted Messages</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Content</th>
+                <th>Original Timestamp</th>
+                <th>Accepted By</th>
+                <th>Accepted Timestamp</th>
+                <th>Chat Thread</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Model)
+            {
+                <tr>
+                    <td>@message.Content</td>
+                    <td>@message.Timestamp.ToString("g")</td>
+                    <td>@message.AcceptedBy</td>
+                    <td>@message.AcceptedTimestamp.ToString("g")</td>
+                    <td>@message.Message.ChatThread.Title</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> 

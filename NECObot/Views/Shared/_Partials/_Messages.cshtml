@@ -5,15 +5,23 @@
             padding: 10px;
             border-radius: 0.25rem;
             margin-bottom: 10px;
+            max-width: 70%;
+            word-wrap: break-word;
         }
         .chat-message.user {
             background-color: #007bff;
             color: white;
             align-self: flex-end;
+            margin-left: auto;
         }
         .chat-message.bot {
             background-color: #f1f1f1;
             align-self: flex-start;
+            margin-right: auto;
+        }
+        .accept-button {
+            margin-top: 5px;
+            float: right;
         }
     </style>
     @if (!Model.Any())
@@ -26,9 +34,51 @@
     {
         @foreach (var message in Model)
         {
-            <div class="chat-message @(message.Role == "user" ? "user" : "bot")">
-                @message.Content
+            <div class="chat-message @(message.Record.Role == "user" ? "user" : "bot")" data-message-id="@message.Record.Id">
+                @message.Record.Content
+                @if (User.IsInRole("Admin") && message.Record.Role == "bot")
+                {
+                    <div class="accept-button" id="accept-@message.Record.Id">
+                        <button class="btn btn-sm btn-success" 
+                                onclick="acceptMessage('@message.Record.Id')"
+                                data-message-id="@message.Record.Id">
+                            Add to Accepted Messages
+                        </button>
+                    </div>
+                }
             </div>
         }
     }
 </div>
+
+<script>
+function checkAcceptedMessages() {
+    $('.chat-message[data-message-id]').each(function() {
+        var messageId = $(this).data('message-id');
+        var acceptButton = $('#accept-' + messageId);
+        
+        if (acceptButton.length) {
+            $.get('/AcceptedMessage/IsMessageAccepted', { messageId: messageId }, function(isAccepted) {
+                if (isAccepted) {
+                    acceptButton.remove();
+                }
+            });
+        }
+    });
+}
+
+$(document).ready(function() {
+    checkAcceptedMessages();
+    // Check every 5 seconds for new accepted messages
+    setInterval(checkAcceptedMessages, 5000);
+});
+
+function acceptMessage(messageId) {
+    $.post('/AcceptedMessage/AcceptMessage', { messageId: messageId }, function() {
+        $('#accept-' + messageId).remove();
+        alert('Message accepted successfully!');
+    }).fail(function(error) {
+        alert('Failed to accept message: ' + error.responseText);
+    });
+}
+</script>
